@@ -33,18 +33,18 @@ public class PlaceFilter : MonoBehaviour
     {
         while (placeFinder.isFinding)
             yield return null;
-        Debug.Log($"Поиск завершён, найдено {placeFinder.places.Count} заведений. " +
-            $"Применяем фильтры...");
+        Debug.Log($"ГЏГ®ГЁГ±ГЄ Г§Г ГўГҐГ°ГёВёГ­, Г­Г Г©Г¤ГҐГ­Г® {placeFinder.places.Count} Г§Г ГўГҐГ¤ГҐГ­ГЁГ©. " +
+            $"ГЏГ°ГЁГ¬ГҐГ­ГїГҐГ¬ ГґГЁГ«ГјГІГ°Г»...");
         if (ApplyFilters())
         {
             onFindedPlace?.Invoke();
-            Debug.Log($"Заведение найдено в области {area} от текущего местоположения");
+            Debug.Log($"Г‡Г ГўГҐГ¤ГҐГ­ГЁГҐ Г­Г Г©Г¤ГҐГ­Г® Гў Г®ГЎГ«Г Г±ГІГЁ {area} Г®ГІ ГІГҐГЄГіГ№ГҐГЈГ® Г¬ГҐГ±ГІГ®ГЇГ®Г«Г®Г¦ГҐГ­ГЁГї");
             yield break;
         }
         else
         {
             float newArea = area + 0.5f;
-            Debug.Log($"Ни одно заведение не найдено. Новая область: {area}");
+            Debug.Log($"ГЌГЁ Г®Г¤Г­Г® Г§Г ГўГҐГ¤ГҐГ­ГЁГҐ Г­ГҐ Г­Г Г©Г¤ГҐГ­Г®. ГЌГ®ГўГ Гї Г®ГЎГ«Г Г±ГІГј: {newArea}");
             yield return new WaitForSeconds(10f);
             StartCoroutine(placeFinder.FindPlacesInRadius(mapView.center, newArea));
             StartCoroutine(CheckPlacesInArea(newArea));
@@ -100,7 +100,7 @@ public class PlaceFilter : MonoBehaviour
                     break;
 
                 case FilterType.other:
-                    // Какие-то другие фильтры
+                    // ГЉГ ГЄГЁГҐ-ГІГ® Г¤Г°ГіГЈГЁГҐ ГґГЁГ«ГјГІГ°Г»
                     break;
             }
         }
@@ -121,7 +121,7 @@ public class PlaceFilter : MonoBehaviour
 
     private bool CheckTime(string time)
     {
-        return true; // Нужно написать логику проверки того,
-                     // что текущее время входит во время работы заведения
+        return true; // ГЌГіГ¦Г­Г® Г­Г ГЇГЁГ±Г ГІГј Г«Г®ГЈГЁГЄГі ГЇГ°Г®ГўГҐГ°ГЄГЁ ГІГ®ГЈГ®,
+                     // Г·ГІГ® ГІГҐГЄГіГ№ГҐГҐ ГўГ°ГҐГ¬Гї ГўГµГ®Г¤ГЁГІ ГўГ® ГўГ°ГҐГ¬Гї Г°Г ГЎГ®ГІГ» Г§Г ГўГҐГ¤ГҐГ­ГЁГї
     }
 }
